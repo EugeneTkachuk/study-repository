@@ -113,6 +113,7 @@
     <?php if (count($_FILES) > 0) {
         $name = 'upload/' . $_FILES["document"]["name"];
         move_uploaded_file($_FILES["document"]["tmp_name"],$name);
+
     } ?>
     <form method="post" enctype="multipart/form-data"
         <input type="file" name="document"/>
