@@ -24,7 +24,6 @@ if (count($_POST) > 0) {
     <title>Список товаров</title>
     <a href="/tk.php"> Список товаров, </a>
 </head>
-
 <form method="POST" enctype="multipart/form-data">
     Название:
     <select name="name">
