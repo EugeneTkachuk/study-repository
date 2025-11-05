@@ -1,61 +1,48 @@
 <?php
 require 'functions.php'; // подключаем внешний файл с функциями
 
-// создаем массивы с продуктами, каждый продукт - ассоциативный массив
-//$Apple = ['name' => 'Apple', 'price' => 193, 'weight' => 945];
-//$Banana = ['name' => 'Banana', 'price' => 270, 'weight' => 798];
-//$Orange = ['name' => 'Orange', 'price' => 1697, 'weight' => 898];
-//$strawberry = ['name' => 'strawberry', 'price' => 105, 'weight' => 850];
-//$food = [$Apple, $Banana, $Orange, $strawberry]; // создание массива из 4
-$file = 'products.csv'; // переменная с файлом
-//$lines = []; // пустой массив для сохранения строк
-//foreach ($food as $item) { // цикл для чтоб перебрать каждый масив из food, так как у нас массив в массиве
-// $lines[] = implode(';', $item); //преобразование в строку
-//}
-// записываем строки в CSV файл
-//file_put_contents($file, implode("\n", $lines));  // записываем данные в файл построчно
+class Product
+{
+    public $name;
+    public $price;
+    public $weight;
+    public $area;
+    public $delivery;
+    public $payment;
+    public $food;
 
-// читаем содержимое CSV файла обратно
-$str = file_get_contents($file);// получаем текст из файла
+}
 
-// разбиваем текст по строкам, каждая строка — один продукт
-$list = explode("\n", $str); // массив строк
-
-// создаём массив продуктов
-$products = []; // сдесь хранятся продукты
-
-
-// разбираем строку в массив
+$file = 'products.csv';
+$str = file_get_contents($file);
+$list = explode("\n", $str);
+$products = [];
 foreach ($list as $line) {
     if (strlen($line) == 0) {
         continue;
     }
-    $product = explode(";", $line);
-    $products[] = [
-        "name" => $product[0],
-        "price" => $product[1],
-        "weight" => $product[2],
-        "area" => $product[3],
-        "delivery" => $product[4],
-        "payment" => $product[5],
-        "food" => $product[6],
-    ];
+    $p = explode(";", $line);
+    $pro = new Product();
+    $pro->name = $p[0];
+    $pro->price = $p[1];
+    $pro->weight = $p[2];
+    $pro->area = $p[3];
+    $pro->delivery = $p[4];
+    $pro->payment = $p[5];
+    $pro->food = $p[6];
+
+    $products[] = $pro;
 }
-// получаем значение из строки параметров ?search=
 $search = $_GET['search'] ?? '';
-
-// фильтруем массив продуктов по поиску
 $products = array_filter($products, function ($item) use ($search) {
-    return str_contains($item ['name'], $search);
+    return $search === '' ? true : str_contains($item->name, $search);
 });
-
-// ПАГИНАЦИЯ
-$per_page = 5; // количество товаров на одной странице
-$total = count($products); // общее количество товаров после фильтра
-$pages = ceil($total / $per_page); // количество страниц
-$page = $_GET['page'] ?? 1; // текущая страница
-$start = ($page - 1) * $per_page; // с какого элемента начинать
-$products = array_splice($products, $start, $per_page); // отрезаем нужный кусок
+$per_page = 5;
+$total = count($products);
+$pages = ceil($total / $per_page);
+$page = $_GET['page'] ?? 1;
+$start = ($page - 1) * $per_page;
+$products = array_splice($products, $start, $per_page);
 ?>
 
 <html lang="utf-8">
@@ -79,26 +66,26 @@ $products = array_splice($products, $start, $per_page); // отрезаем ну
     <?php foreach ($products as $value) { ?>
         <tr>
             <td>
-                <?php echo $value ["name"] ?>
+                <?php echo $value->name ?>
             </td>
             <td>
-                <?php echo $value ["price"] ?>
+                <?php echo $value->price ?>
             </td>
             <td>
-                <?php echo $value ["weight"] ?>
+                <?php echo $value->weight ?>
             </td>
             <td>
-                <?php echo $value ["area"] ?>
+                <?php echo $value->area ?>
             </td>
             <td>
-                <?php echo $value ["delivery"] ?>
+                <?php echo $value->delivery ?>
             </td>
             <td>
-                <?php echo $value ["payment"] ?>
+                <?php echo $value->payment ?>
             </td>
             <td>
                 <label>
-                    <input type="checkbox" value="<?php echo $value ["food"] ?>" checked="<?php echo $value ["food"] ?>"
+                    <input type="checkbox" value="<?php echo $value->food ?>" checked="<?php echo $value->food ?>"
                 </label>
             </td>
         </tr>
