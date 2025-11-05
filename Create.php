@@ -9,7 +9,7 @@ if (count($_POST) > 0) {
     $cash = $_POST['payment'];
     $food = $_POST['food'];
     $file = "products.csv";
-    $allProperties = [$name, $price, $weight, $area, $delivery,$cash,$food[0]];
+    $allProperties = [$name, $price, $weight, $area, $delivery, $cash, $food[0]];
     $lines = implode(';', $allProperties) . "\n";
     file_put_contents($file, $lines, FILE_APPEND);
 
@@ -56,12 +56,12 @@ if (count($_POST) > 0) {
     </label>
     <br>
     Доставка:
-        <br>
-      Yes:<label>
+    <br>
+    Yes:<label>
         <input type="radio" name="delivery" value="yes">
     </label>
     <br>
-      No:<label>
+    No:<label>
         <input type="radio" name="delivery" value="no">
     </label>
     <br>

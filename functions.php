@@ -1,11 +1,11 @@
 <?php
 function myPad($n, $s = ' ')
 {
-$x = '';
-for ($i = 0; $i < $n; $i++) {
-$x = $x . $s;
-}
-return $x;
+    $x = '';
+    for ($i = 0; $i < $n; $i++) {
+        $x = $x . $s;
+    }
+    return $x;
 }
 
 function getMaxLength($products, $l)
