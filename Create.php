@@ -22,11 +22,15 @@ if (count($_POST) > 0) {
 <head>
     <meta charset="UTF-8">
     <title>Список товаров</title>
-    <a href="/tk.php"> Список товаров, </a>
 </head>
+<body>
+<a href="/tk.php"><- Список товаров</a>
+<br />
+<br />
+<div style="width: 400px">
 <form method="POST" enctype="multipart/form-data">
-    Название:
-    <label>
+    <fieldset>
+        <legend>Название</legend>
         <select name="name">
             <option>Milk</option>
             <option>Oil</option>
@@ -37,72 +41,76 @@ if (count($_POST) > 0) {
             <option>Yogurt</option>
             <option>Water</option>
         </select>
-    </label>
-    <br>
-    Цена:
-    <label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Цена</legend>
         <input type="text" name="price">
-    </label>
-    <br>
-    Вес:
-    <label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Вес</legend>
         <input type="text" name="weight">
-    </label>
-    <br>
-    Описание :
-    <br>
-    <label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Описание</legend>
         <textarea name="area"></textarea>
-    </label>
-    <br>
-    Доставка:
-    <br>
-    Yes:<label>
-        <input type="radio" name="delivery" value="yes">
-    </label>
-    <br>
-    No:<label>
-        <input type="radio" name="delivery" value="no">
-    </label>
-    <br>
-    <br>
-    Оплата:
-    <br>
-    Card:<label>
-        <input type="radio" name="payment" value="card"/>
-    </label>
-    <br/>
-    Cash:<label>
-        <input type="radio" name="payment" value="cash"/>
-    </label>
-    <br>
-    <br>
-    Milk: <label>
-        <input type="checkbox" name="food[]" value="1">
-    </label><br>
-    Oil: <label>
-        <input type="checkbox" name="food[]" value="2">
-    </label><br>
-    Salad:<label>
-        <input type="checkbox" name="food[]" value="3">
-    </label><br>
-    Cheese:<label>
-        <input type="checkbox" name="food[]" value="4">
-    </label><br>
-    Orange:<label>
-        <input type="checkbox" name="food[]" value="5">
-    </label><br>
-    Banana:<label>
-        <input type="checkbox" name="food[]" value="6">
-    </label><br>
-    Yogurt:<label>
-        <input type="checkbox" name="food[]" value="7">
-    </label><br>
-    Water:<label>
-        <input type="checkbox" name="food[]" value="8">
-    </label><br>
+    </fieldset>
+
+    <fieldset>
+        <legend>Доставка</legend>
+        Yes:<label>
+            <input type="radio" name="delivery" value="yes">
+        </label>
+        <br>
+        No:<label>
+            <input type="radio" name="delivery" value="no">
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Оплата</legend>
+        Card:<label>
+            <input type="radio" name="payment" value="card"/>
+        </label>
+        <br/>
+        Cash:<label>
+            <input type="radio" name="payment" value="cash"/>
+        </label>
+    </fieldset>
+
+    <fieldset>
+        <legend>Тип продукта</legend>
+        Milk: <label>
+            <input type="checkbox" name="food[]" value="1">
+        </label><br>
+        Oil: <label>
+            <input type="checkbox" name="food[]" value="2">
+        </label><br>
+        Salad:<label>
+            <input type="checkbox" name="food[]" value="3">
+        </label><br>
+        Cheese:<label>
+            <input type="checkbox" name="food[]" value="4">
+        </label><br>
+        Orange:<label>
+            <input type="checkbox" name="food[]" value="5">
+        </label><br>
+        Banana:<label>
+            <input type="checkbox" name="food[]" value="6">
+        </label><br>
+        Yogurt:<label>
+            <input type="checkbox" name="food[]" value="7">
+        </label><br>
+        Water:<label>
+            <input type="checkbox" name="food[]" value="8">
+        </label><br>
+    </fieldset>
+
     <br>
     <button type="submit">Ok</button>
 </form>
-<body>
+</div>
+</body>
 </html>

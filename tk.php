@@ -31,18 +31,15 @@ foreach ($list as $line) {
         continue;
     }
     $product = explode(";", $line);
-    $products [] = [
-            "name" => $product[0],
-            "price" => $product[1],
-            "weight" => $product[2],
-            "area" => $product[3],
-            "delivery" => $product[4],
-            "payment" => $product[5],
-            "food" => $product[6],
-
+    $products[] = [
+        "name" => $product[0],
+        "price" => $product[1],
+        "weight" => $product[2],
+        "area" => $product[3],
+        "delivery" => $product[4],
+        "payment" => $product[5],
+        "food" => $product[6],
     ];
-
-
 }
 // получаем значение из строки параметров ?search=
 $search = $_GET['search'] ?? '';
@@ -127,8 +124,6 @@ $products = array_splice($products, $start, $per_page); // отрезаем ну
         <input value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
     </label>
     <button>Искать</button>
-
-
 </form>
 </body>
 </html>
