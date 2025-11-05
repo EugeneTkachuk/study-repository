@@ -61,13 +61,13 @@
     $products = array_splice($products, $start, $per_page); // отрезаем нужный кусок
     ?>
 
-    <html>
+    <html lang="utf-8">
     <head>
         <meta charset="utf-8"/>
         <title>Таблица</title>
     </head>
     <body>
-    <a href="/create.php"> Новый товар, </a>
+    <a href="/Create.php"> Новый товар, </a>
     <table width="300px" border="4" cellpadding="5">
         <tr>
             <td><b>Продукты</b></td>
@@ -100,7 +100,9 @@
                     <?php echo $value ["payment"]?>
                 </td>
                 <td>
-                   <input type="checkbox"value="<?php echo $value ["food"]?>" checked="<?php echo $value ["food"]?>"
+                    <label>
+                        <input type="checkbox" value="<?php echo $value ["food"]?>" checked="<?php echo $value ["food"]?>"
+                    </label>
                 </td>
             </tr>
         <?php } ?>
@@ -118,10 +120,11 @@
     <form method="post" enctype="multipart/form-data"
         <input type="file" name="document"/>
         <button type="submit">Send!</button>
-    </form>
 
     <form method="get">
-        <input  value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
+        <label>
+            <input  value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
+        </label>
         <button>Искать</button>
 
     </form>
