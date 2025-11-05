@@ -111,6 +111,7 @@ $products = array_splice($products, $start, $per_page);
         <input value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
     </label>
     <button>Искать</button>
+    
 </form>
 </body>
 </html>
