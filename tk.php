@@ -11,6 +11,35 @@ class Product
     public $payment;
     public $food;
 
+    public function food(): string
+    {
+        return $this->name;
+    }
+
+    public function price(): string
+    {
+        return $this->price;
+    }
+
+    public function weight(): string
+    {
+        return $this->weight;
+    }
+
+    public function area(): string
+    {
+        return $this->area;
+    }
+
+    public function delivery(): string
+    {
+        return $this->delivery;
+    }
+
+    public function payment(): string
+    {
+        return $this->payment;
+    }
 }
 
 $file = 'products.csv';
@@ -63,25 +92,26 @@ $products = array_splice($products, $start, $per_page);
         <td><b>Сохранить продукт</b></td>
     </tr>
 
+
     <?php foreach ($products as $value) { ?>
         <tr>
             <td>
-                <?php echo $value->name ?>
+                <?php echo $value->food() ?>
             </td>
             <td>
-                <?php echo $value->price ?>
+                <?php echo $value->price() ?>
             </td>
             <td>
-                <?php echo $value->weight ?>
+                <?php echo $value->weight() ?>
             </td>
             <td>
-                <?php echo $value->area ?>
+                <?php echo $value->area() ?>
             </td>
             <td>
-                <?php echo $value->delivery ?>
+                <?php echo $value->delivery() ?>
             </td>
             <td>
-                <?php echo $value->payment ?>
+                <?php echo $value->payment() ?>
             </td>
             <td>
                 <label>
@@ -111,7 +141,7 @@ $products = array_splice($products, $start, $per_page);
         <input value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
     </label>
     <button>Искать</button>
-    
+
 </form>
 </body>
 </html>
