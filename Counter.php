@@ -1,32 +1,37 @@
 <?php
 
-class Counter
+class Volume
 {
     private $count = 0;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->count = 0;
     }
 
-    public function increment()
+    public function up()
     {
-        $this->count++;
-        $this->count++;
-        $this->count++;
         $this->count++;
     }
 
-    public function decrement()
+    public function down()
     {
         $this->count--;
+        if ($this->count < 0) {
+            $this->count = 0;
+        }
     }
 
-    public function getCount()
+    public function getValue()
     {
         return $this->count;
     }
+
 }
-$myCounter = new Counter();
-$myCounter->increment();
-$myCounter->decrement();
-echo $myCounter->getCount();
+
+$tv = new Volume;
+$tv->up();
+$tv->down();
+$tv->getValue();
+
+echo $tv->getValue();
