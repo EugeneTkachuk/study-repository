@@ -11,6 +11,24 @@ class Product
     public $payment;
     public $food;
 
+
+    public function __construct($name, $price, $weight, $area, $delivery, $payment, $food)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->weight = $weight;
+        $this->area = $area;
+        $this->delivery = $delivery;
+        $this->payment = $payment;
+        $this->food = $food;
+
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     public function food(): string
     {
         return $this->name;
@@ -51,15 +69,7 @@ foreach ($list as $line) {
         continue;
     }
     $p = explode(";", $line);
-    $pro = new Product();
-    $pro->name = $p[0];
-    $pro->price = $p[1];
-    $pro->weight = $p[2];
-    $pro->area = $p[3];
-    $pro->delivery = $p[4];
-    $pro->payment = $p[5];
-    $pro->food = $p[6];
-
+    $pro = new Product($p[0], $p[1], $p[2], $p[3], $p[4], $p[5], $p[6]);
     $products[] = $pro;
 }
 $search = $_GET['search'] ?? '';
@@ -96,7 +106,7 @@ $products = array_splice($products, $start, $per_page);
     <?php foreach ($products as $value) { ?>
         <tr>
             <td>
-                <?php echo $value->food() ?>
+                <?php echo $value ?>
             </td>
             <td>
                 <?php echo $value->price() ?>
