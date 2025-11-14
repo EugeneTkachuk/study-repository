@@ -80,7 +80,7 @@ $triangle = new triangle(100, 100, 100);
 $figure = [$circle, $rectangle, $triangle];
 
 foreach ($figure as $item) {
-    echo $item->type() . " → area: " . $item->area() . PHP_EOL;;
+    echo $item->type() . " → area: " . $item->area() . "\n";
 }
 
 
