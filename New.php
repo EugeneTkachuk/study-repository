@@ -1,13 +1,13 @@
 <?php
 
-interface Shape
+interface shape
 {
     public function area(): int|float;
 
     public function type(): string;
 }
 
-class circle implements Shape
+class circle implements shape
 {
     public $radius;
 
@@ -27,7 +27,7 @@ class circle implements Shape
     }
 }
 
-class rectangle implements Shape
+class rectangle implements shape
 {
     public $width;
     public $height;
@@ -49,7 +49,7 @@ class rectangle implements Shape
     }
 }
 
-class triangle implements Shape
+class triangle implements shape
 {
     public $line1;
     public $line2;
