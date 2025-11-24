@@ -90,7 +90,9 @@ $products = array_splice($products, $start, $per_page);
     <title>Таблица</title>
 </head>
 <body>
+
 <a href="/Create.php"> Новый товар, </a>
+<a href="/checkout.php"> Корзина, </a>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
@@ -100,6 +102,8 @@ $products = array_splice($products, $start, $per_page);
         <td><b>Доставка</b></td>
         <td><b>Оплата</b></td>
         <td><b>Сохранить продукт</b></td>
+        <td><b>Добавление</b></td>
+        <td><b>Удаление</b></td>
     </tr>
 
 
@@ -123,10 +127,20 @@ $products = array_splice($products, $start, $per_page);
             <td>
                 <?php echo $value->payment() ?>
             </td>
+
             <td>
                 <label>
                     <input type="checkbox" value="<?php echo $value->food ?>" checked="<?php echo $value->food ?>"
                 </label>
+            </td>
+            <td>
+                <a href="add.php?name=<?php echo $value->name;?>">
+                    в корзину
+                </a>
+            </td>
+            <td>
+                <a href="delete.php?name=<?php echo $value->name;?>">
+                    удалить
             </td>
         </tr>
     <?php } ?>

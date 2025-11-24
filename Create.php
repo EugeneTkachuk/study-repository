@@ -106,6 +106,7 @@ if (count($_POST) > 0) {
         Water:<label>
             <input type="checkbox" name="food[]" value="8">
         </label><br>
+        <input typ="link">
     </fieldset>
 
     <br>
