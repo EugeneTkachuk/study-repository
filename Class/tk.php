@@ -24,39 +24,15 @@ class Product
 
     }
 
+    public static function createFromArray(array $data): Product
+    {
+        return new self ($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
+    }
+
+
     public function __toString(): string
     {
         return $this->name;
-    }
-
-    public function food(): string
-    {
-        return $this->name;
-    }
-
-    public function price(): string
-    {
-        return $this->price;
-    }
-
-    public function weight(): string
-    {
-        return $this->weight;
-    }
-
-    public function area(): string
-    {
-        return $this->area;
-    }
-
-    public function delivery(): string
-    {
-        return $this->delivery;
-    }
-
-    public function payment(): string
-    {
-        return $this->payment;
     }
 }
 
@@ -69,7 +45,7 @@ foreach ($list as $line) {
         continue;
     }
     $p = explode(";", $line);
-    $pro = new Product($p[0], $p[1], $p[2], $p[3], $p[4], $p[5], $p[6]);
+    $pro = Product::createFromArray($p);
     $products[] = $pro;
 }
 $search = $_GET['search'] ?? '';
@@ -91,8 +67,8 @@ $products = array_splice($products, $start, $per_page);
 </head>
 <body>
 
-<a href="/Create.php"> Новый товар, </a>
-<a href="/checkout.php"> Корзина, </a>
+<a href="/Class/Create.php"> Новый товар, </a>
+<a href="/Class/checkout.php"> Корзина, </a>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
@@ -113,19 +89,19 @@ $products = array_splice($products, $start, $per_page);
                 <?php echo $value ?>
             </td>
             <td>
-                <?php echo $value->price() ?>
+                <?php echo $value->price ?>
             </td>
             <td>
-                <?php echo $value->weight() ?>
+                <?php echo $value->weight ?>
             </td>
             <td>
-                <?php echo $value->area() ?>
+                <?php echo $value->area ?>
             </td>
             <td>
-                <?php echo $value->delivery() ?>
+                <?php echo $value->delivery ?>
             </td>
             <td>
-                <?php echo $value->payment() ?>
+                <?php echo $value->payment ?>
             </td>
 
             <td>
@@ -148,7 +124,7 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href=" /tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
+    <a href="/Class/tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
 <?php endfor ?>
 
 <?php if (count($_FILES) > 0) {
