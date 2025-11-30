@@ -1,5 +1,4 @@
 <?php
-
 namespace MyClassWork;
 class Volume
 {
@@ -29,10 +28,3 @@ class Volume
     }
 
 }
-
-$tv = new Volume;
-$tv->up();
-$tv->down();
-$tv->getValue();
-
-echo $tv->getValue();

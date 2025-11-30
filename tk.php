@@ -1,6 +1,10 @@
 <?php
-require 'functions.php'; // подключаем внешний файл с функциями
-require 'MyClassWork/Product.php';
+require 'functions.php';
+ spl_autoload_register(function ($class) {
+    $class = str_replace('\\', '/', $class);
+    include $class . '.php';
+});
+
 
 use MyClassWork\Product;
 
@@ -28,7 +32,7 @@ $start = ($page - 1) * $per_page;
 $products = array_splice($products, $start, $per_page);
 ?>
 
-<html lang="utf-8">
+<html lang="utf-8" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8"/>
     <title>Таблица</title>
@@ -92,9 +96,8 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href="/tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
+    <a href="/tk.php?page=<?php echo $i + 1 ?>"><?php echo $search?> </a>
 <?php endfor ?>
-
 <?php if (count($_FILES) > 0) {
     $name = 'upload/' . $_FILES["document"]["name"];
     move_uploaded_file($_FILES["document"]["tmp_name"], $name);
@@ -103,13 +106,12 @@ $products = array_splice($products, $start, $per_page);
 <form method="post" enctype="multipart/form-data"
 <input type="file" name="document"/>
 <button type="submit">Send!</button>
-
+</form
 <form method="get">
     <label>
         <input value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
     </label>
     <button>Искать</button>
-
 </form>
 </body>
 </html>

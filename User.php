@@ -1,14 +1,12 @@
 <?php
 
-class User
-{
-    public $name;
-    public $age;
-    public $weight;
-}
+spl_autoload_register(function ($class) {
+    $class = str_replace('\\', '/', $class);
+    include $class . '.php';
+});
+    use MyClassWork\User;
 
-
-$Eugene = new MyClassWork\User();
+$Eugene = new User;
 $Eugene->name = 'Eugene';
 $Eugene->age = 37;
 $Eugene->weight = 110;
