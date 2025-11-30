@@ -1,5 +1,7 @@
 <?php
+namespace Store\Product;
 require 'functions.php'; // подключаем внешний файл с функциями
+
 
 class Product
 {
@@ -67,8 +69,8 @@ $products = array_splice($products, $start, $per_page);
 </head>
 <body>
 
-<a href="/Class/Create.php"> Новый товар, </a>
-<a href="/Class/checkout.php"> Корзина, </a>
+<a href="/Store/Create.php"> Новый товар, </a>
+<a href="/Store/checkout.php"> Корзина, </a>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
@@ -110,12 +112,12 @@ $products = array_splice($products, $start, $per_page);
                 </label>
             </td>
             <td>
-                <a href="add.php?name=<?php echo $value->name;?>">
+                <a href="add.php?name=<?php echo $value->name; ?>">
                     в корзину
                 </a>
             </td>
             <td>
-                <a href="delete.php?name=<?php echo $value->name;?>">
+                <a href="delete.php?name=<?php echo $value->name; ?>">
                     удалить
             </td>
         </tr>
@@ -124,7 +126,7 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href="/Class/tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
+    <a href="/Store/tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
 <?php endfor ?>
 
 <?php if (count($_FILES) > 0) {

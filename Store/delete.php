@@ -1,5 +1,5 @@
 <?php
-
+namespace Store;
 $name = $_GET['name'];
 
 if (!file_exists('checkout.csv'))                                                // если файла нет, то создаем

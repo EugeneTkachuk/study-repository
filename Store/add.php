@@ -1,5 +1,5 @@
 <?php
-
+namespace Store;
 $name = $_GET['name'];                                                                    // получаем товар из ссылки
 $count = $_GET['count'];                                                                 // получаем товар из ссылки
 if (!file_exists('checkout.csv'))                                                // если файла нет, то создаем

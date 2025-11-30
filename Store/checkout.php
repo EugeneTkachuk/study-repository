@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Store;
 // если файла нет то создадим его хотя бы пустым
 if (false === file_exists('checkout.csv')) {
     file_put_contents('checkout.csv', '');
@@ -28,7 +28,7 @@ foreach ($checkout as $line) {
 
 ?>
 
-<a href="/tk.php"> Назад на список товаров </a>
+<a href="/Store/tk.php"> Назад на список товаров </a>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
