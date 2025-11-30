@@ -1,42 +1,8 @@
 <?php
-namespace Store\Product;
 require 'functions.php'; // подключаем внешний файл с функциями
+require 'MyClassWork/Product.php';
 
-
-class Product
-{
-    public $name;
-    public $price;
-    public $weight;
-    public $area;
-    public $delivery;
-    public $payment;
-    public $food;
-
-
-    public function __construct($name, $price, $weight, $area, $delivery, $payment, $food)
-    {
-        $this->name = $name;
-        $this->price = $price;
-        $this->weight = $weight;
-        $this->area = $area;
-        $this->delivery = $delivery;
-        $this->payment = $payment;
-        $this->food = $food;
-
-    }
-
-    public static function createFromArray(array $data): Product
-    {
-        return new self ($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
-    }
-
-
-    public function __toString(): string
-    {
-        return $this->name;
-    }
-}
+use MyClassWork\Product;
 
 $file = 'products.csv';
 $str = file_get_contents($file);
@@ -69,8 +35,8 @@ $products = array_splice($products, $start, $per_page);
 </head>
 <body>
 
-<a href="/Store/Create.php"> Новый товар, </a>
-<a href="/Store/checkout.php"> Корзина, </a>
+<a href="/create.php"> Новый товар, </a>
+<a href="/checkout.php"> Корзина, </a>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
@@ -126,7 +92,7 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href="/Store/tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
+    <a href="/tk.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
 <?php endfor ?>
 
 <?php if (count($_FILES) > 0) {

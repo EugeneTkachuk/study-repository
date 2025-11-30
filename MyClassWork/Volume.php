@@ -1,5 +1,6 @@
 <?php
 
+namespace MyClassWork;
 class Volume
 {
     private $count = 0;

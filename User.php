@@ -1,11 +1,14 @@
 <?php
 
-class User {
+class User
+{
     public $name;
     public $age;
     public $weight;
 }
-$Eugene = new User;
+
+
+$Eugene = new MyClassWork\User();
 $Eugene->name = 'Eugene';
 $Eugene->age = 37;
 $Eugene->weight = 110;

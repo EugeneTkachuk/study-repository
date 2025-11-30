@@ -1,5 +1,4 @@
 <?php
-namespace Store;
 if (count($_POST) > 0) {
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -24,7 +23,7 @@ if (count($_POST) > 0) {
     <title>Список товаров</title>
 </head>
 <body>
-<a href="/Store/tk.php"><- Список товаров</a>
+<a href="/tk.php"><- Список товаров</a>
 <br />
 <br />
 <div style="width: 400px">
