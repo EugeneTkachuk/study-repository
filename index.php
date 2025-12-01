@@ -96,7 +96,7 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $search?> </a>
+    <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1?> </a>
 <?php endfor ?>
 <?php if (count($_FILES) > 0) {
     $name = 'upload/' . $_FILES["document"]["name"];
