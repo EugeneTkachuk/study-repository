@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';//сервер работает
+require 'functions.php';
  spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     include $class . '.php';
@@ -96,7 +96,7 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href="/tk.php?page=<?php echo $i + 1 ?>"><?php echo $search?> </a>
+    <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $search?> </a>
 <?php endfor ?>
 <?php if (count($_FILES) > 0) {
     $name = 'upload/' . $_FILES["document"]["name"];

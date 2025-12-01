@@ -27,7 +27,7 @@ foreach ($checkout as $line) {
 
 ?>
 
-<a href="/tk.php"> Назад на список товаров </a>
+<a href="/index.php"> Назад на список товаров </a>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>

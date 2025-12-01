@@ -23,7 +23,7 @@ if (count($_POST) > 0) {
     <title>Список товаров</title>
 </head>
 <body>
-<a href="/tk.php"><- Список товаров</a>
+<a href="/index.php"><- Список товаров</a>
 <br />
 <br />
 <div style="width: 400px">
