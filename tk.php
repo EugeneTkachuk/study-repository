@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';//сервер
+require 'functions.php';//сервер работает
  spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     include $class . '.php';
