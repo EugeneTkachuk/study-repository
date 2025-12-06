@@ -1,0 +1,1 @@
+cd ~/Downloads/mysql && ./bin/mysqld --datadir=$(pwd)/data --socket=/tmp/mysql.sock --port=3306

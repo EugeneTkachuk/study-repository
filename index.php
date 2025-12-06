@@ -6,6 +6,8 @@ require 'functions.php';
 });
 
 
+// mysql user - root
+// mysql password - нету пустота
 use MyClassWork\Product;
 
 $file = 'products.csv';
