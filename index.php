@@ -6,7 +6,7 @@ require 'functions.php';
 });
 
 
-// mysql user - root
+// mysql user - roottt
 // mysql password - нету пустота
 use MyClassWork\Product;
 
