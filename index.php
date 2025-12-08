@@ -1,6 +1,6 @@
 <?php
 require 'functions.php';
- spl_autoload_register(function ($class) {
+spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     include $class . '.php';
 });
@@ -14,13 +14,24 @@ $file = 'products.csv';
 $str = file_get_contents($file);
 $list = explode("\n", $str);
 $products = [];
-foreach ($list as $line) {
-    if (strlen($line) == 0) {
-        continue;
-    }
-    $p = explode(";", $line);
-    $pro = Product::createFromArray($p);
-    $products[] = $pro;
+$database = 'ET Data';
+$user = 'root';
+$password = "";
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=' . $database, $user, $password);
+$stm = $pdo->query('SELECT * FROM product');
+foreach ($stm as $row) {
+    $products[] = Product::createFromArray
+    (
+            [
+                    $row['name'],
+                    $row['price'],
+                    $row['weight'],
+                    $row['description'],
+                    $row['delivery'],
+                    $row['payment'],
+                    $row['save_product']
+            ]
+    );
 }
 $search = $_GET['search'] ?? '';
 $products = array_filter($products, function ($item) use ($search) {
@@ -32,6 +43,8 @@ $pages = ceil($total / $per_page);
 $page = $_GET['page'] ?? 1;
 $start = ($page - 1) * $per_page;
 $products = array_splice($products, $start, $per_page);
+
+
 ?>
 
 <html lang="utf-8" xmlns="http://www.w3.org/1999/html">
@@ -98,7 +111,7 @@ $products = array_splice($products, $start, $per_page);
 <br>
 
 <?php for ($i = 0; $i < $pages; $i++): ?>
-    <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1?> </a>
+    <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
 <?php endfor ?>
 <?php if (count($_FILES) > 0) {
     $name = 'upload/' . $_FILES["document"]["name"];
