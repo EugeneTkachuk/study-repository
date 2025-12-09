@@ -14,7 +14,6 @@ $database = 'ET Data';
 $user = 'root';
 $password = "";
 
-
 $pdo = new PDO('mysql:host=127.0.0.1;dbname=' . $database, $user, $password);
 $stm = $pdo->query('SELECT * FROM product');
 foreach ($stm as $row) {
@@ -27,7 +26,6 @@ foreach ($stm as $row) {
                     $row['description'],
                     $row['delivery'],
                     $row['payment'],
-                    $row['save_product']
             ]
     );
 }
@@ -62,7 +60,6 @@ $products = array_splice($products, $start, $per_page);
         <td><b>Описание продукта</b></td>
         <td><b>Доставка</b></td>
         <td><b>Оплата</b></td>
-        <td><b>Сохранить продукт</b></td>
         <td><b>Добавление</b></td>
         <td><b>Удаление</b></td>
     </tr>
@@ -87,12 +84,6 @@ $products = array_splice($products, $start, $per_page);
             </td>
             <td>
                 <?php echo $value->payment ?>
-            </td>
-
-            <td>
-                <label>
-                    <input type="checkbox" value="<?php echo $value->food ?>" checked="<?php echo $value->food ?>"
-                </label>
             </td>
             <td>
                 <a href="add.php?name=<?php echo $value->name; ?>">
