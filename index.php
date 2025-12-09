@@ -31,22 +31,6 @@ foreach ($stm as $row) {
             ]
     );
 }
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])) {
-    $stm = $pdo->prepare
-    (
-            'INSERT INTO product (`name`, `price`, `weight`, `description`, `delivery`, `payment`, `save_product`)
-           VALUES (:name, :price, :weight, :description, :delivery, :payment, :save_product)'
-    );
-    $stm->bindValue(':name', $_POST['name']);
-    $stm->bindValue(':price', $_POST['price']);
-    $stm->bindValue(':weight', $_POST['weight']);
-    $stm->bindValue(':description', $_POST['description']);
-    $stm->bindValue(':delivery', $_POST['delivery']);
-    $stm->bindValue(':payment', $_POST['payment']);
-    $stm->bindValue(':save_product', $_POST['save_product']);
-    $stm->execute();
-}
-
 $search = $_GET['search'] ?? '';
 $products = array_filter($products, function ($item) use ($search) {
     return $search === '' ? true : str_contains($item->name, $search);

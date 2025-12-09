@@ -11,8 +11,26 @@ if (count($_POST) > 0) {
     $allProperties = [$name, $price, $weight, $area, $delivery, $cash, $food[0]];
     $lines = implode(';', $allProperties) . "\n";
     file_put_contents($file, $lines, FILE_APPEND);
+}
+$database = 'ET Data';
+$user = 'root';
+$password = "";
+$pdo = new PDO('mysql:host=127.0.0.1;dbname=' . $database, $user, $password);
 
-
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])) {
+    $stm = $pdo->prepare
+    (
+            'INSERT INTO product (`name`, `price`, `weight`, `description`, `delivery`, `payment`, `save_product`)
+           VALUES (:name, :price, :weight, :description, :delivery, :payment, :save_product)'
+    );
+    $stm->bindValue(':name', $_POST['name']);
+    $stm->bindValue(':price', $_POST['price']);
+    $stm->bindValue(':weight', $_POST['weight']);
+    $stm->bindValue(':description', $_POST['description']);
+    $stm->bindValue(':delivery', $_POST['delivery']);
+    $stm->bindValue(':payment', $_POST['payment']);
+    $stm->bindValue(':save_product', $_POST['save_product']);
+    $stm->execute();
 }
 
 ?>
