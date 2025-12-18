@@ -1,20 +1,19 @@
 <?php
+session_start();
+if (false === isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
 require 'functions.php';
+$pdo = getDbConnection();
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
     include $class . '.php';
 });
-
-
 // mysql user - root
 // mysql password - нету пустота
 use MyClassWork\Product;
 
-$database = 'ET Data';
-$user = 'root';
-$password = "";
-
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=' . $database, $user, $password);
 $stm = $pdo->query('SELECT * FROM product');
 foreach ($stm as $row) {
     $products[] = Product::createFromArray
@@ -102,10 +101,6 @@ $products = array_splice($products, $start, $per_page);
 <?php for ($i = 0; $i < $pages; $i++): ?>
     <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
 <?php endfor ?>
-<?php if (count($_FILES) > 0) {
-    $name = 'upload/' . $_FILES["document"]["name"];
-    move_uploaded_file($_FILES["document"]["tmp_name"], $name);
-} ?>
 
 <form method="post" enctype="multipart/form-data"
 <input type="file" name="document"/>

@@ -1,4 +1,10 @@
 <?php
+require "functions.php";
+session_start();
+if (false === isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
 $name = $_GET['name'];                                                                    // получаем товар из ссылки
 $count = $_GET['count'];                                                                 // получаем товар из ссылки
 if (!file_exists('checkout.csv'))                                                // если файла нет, то создаем
@@ -12,8 +18,7 @@ $lines = explode("\n", $str);
 $shop = [];                                                                              // создаем массив
 foreach ($lines as $line)                                                               // проходимся циклом по строкам
 {
-    if (empty($line))
-    {
+    if (empty($line)) {
         continue;
     }
     $parts = explode(',', $line);                                             // режем

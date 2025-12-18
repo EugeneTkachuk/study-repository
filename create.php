@@ -1,10 +1,11 @@
 <?php
-
-$database = 'ET Data';
-$user = 'root';
-$password = "";
-$pdo = new PDO('mysql:host=127.0.0.1;dbname=' . $database, $user, $password);
-
+require "functions.php";
+$pdo = getDbConnection();
+session_start();
+if (false === isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])) {
     $stm = $pdo->prepare
     (

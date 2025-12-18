@@ -23,6 +23,13 @@ function getMaxLength($products, $l)
     return $maxWeightLength;
 }
 
+function getDbConnection() {
+    $database = 'ET Data';
+    $login = 'root';
+    $password = '';
+
+    return new PDO('mysql:host=127.0.0.1;dbname=' . $database, $login, $password);
+}
 //$maxNameLength = getMaxLength($products, 'name') . "\n";
 //echo $maxNameLength;
 //$maxPriceLength = getMaxLength($products, 'price') . "\n";

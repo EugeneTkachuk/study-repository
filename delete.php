@@ -1,4 +1,11 @@
 <?php
+require "functions.php";
+session_start();
+if (false === isset($_SESSION['user'])) {
+    header('Location: login.php');
+    exit();
+}
+
 $name = $_GET['name'];
 
 if (!file_exists('checkout.csv'))                                                // если файла нет, то создаем
