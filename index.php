@@ -32,14 +32,19 @@ $search = $_GET['search'] ?? '';
 $products = array_filter($products, function ($item) use ($search) {
     return $search === '' ? true : str_contains($item->name, $search);
 });
-$per_page = 5;
+if (isset($_GET['page'])) {// определяем текущую страницу
+    $page = (int)$_GET['page'];
+    setcookie("page", $page, time() + (86400 * 30), "/"); // устанавливаеи куки на 30 дней
+} else if (isset($_COOKIE["page"])) {  // проверяем, если нет страницы то берем из куки
+    $page = (int)$_COOKIE["page"];
+} else {                   // если нет страницы то 1 по умолчанию
+    $page = 1;
+}
+$per_page = 3;
 $total = count($products);
 $pages = ceil($total / $per_page);
-$page = $_GET['page'] ?? 1;
 $start = ($page - 1) * $per_page;
 $products = array_splice($products, $start, $per_page);
-
-
 ?>
 
 <html lang="utf-8" xmlns="http://www.w3.org/1999/html">

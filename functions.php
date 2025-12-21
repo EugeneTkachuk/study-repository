@@ -24,7 +24,7 @@ function getMaxLength($products, $l)
 }
 
 function getDbConnection() {
-    $database = 'ET Data';
+    $database = 'project';
     $login = 'root';
     $password = '';
 
