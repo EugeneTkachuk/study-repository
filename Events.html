@@ -1,0 +1,50 @@
+<html>
+<head>
+    <style>
+        div {
+            width: 100px;
+
+            height: 100px;
+
+            background: greenyellow;
+
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+        }
+
+    </style>
+</head>
+<body>
+<div>Go go</div>
+Window size: <span id="w"></span>x<span id="h"></span>
+<script>
+    document.querySelector('#w').innerText = window.innerWidth;
+    document.querySelector('#h').innerText = window.innerHeight;
+    mouse = document.querySelector("div")
+
+    function move(event) {
+        mouse.style.left = event.clientX;
+        mouse.style.top = event.clientY
+        if (event.clientX < window.innerWidth / 2) {
+            if (event.clientY < window.innerHeight / 2) {
+                mouse.style.background = 'red'
+            } else {
+                mouse.style.background = 'yellow'
+            }
+        } else {
+            if (event.clientY < window.innerHeight / 2) {
+                mouse.style.background = 'blue'
+            } else {
+                mouse.style.background = 'green'
+            }
+        }
+    }
+
+
+    document.addEventListener("mousemove", move)
+</script>
+</body>
+</html>
