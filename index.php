@@ -40,7 +40,7 @@ if (isset($_GET['page'])) {// определяем текущую страниц
 } else {                   // если нет страницы то 1 по умолчанию
     $page = 1;
 }
-$per_page = 3;
+$per_page = 1;
 $total = count($products);
 $pages = ceil($total / $per_page);
 $start = ($page - 1) * $per_page;
@@ -110,12 +110,15 @@ $products = array_splice($products, $start, $per_page);
 <form method="post" enctype="multipart/form-data"
 <input type="file" name="document"/>
 <button type="submit">Send!</button>
-</form
+</form>
 <form method="get">
     <label>
         <input value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
     </label>
     <button>Искать</button>
+    <script>
+        function ()
+    </script>
 </form>
 </body>
 </html>
