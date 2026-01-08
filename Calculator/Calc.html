@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+result: <input id="result">
+<br>
+<br>
+<button onClick="inputNumeric(1)">1</button>
+<button onClick="inputNumeric(2)">2</button>
+<button onClick="inputNumeric(3)">3</button>
+<button onClick="operation('+')">+</button>
+<button onclick="operation('-')">-</button>
+<br/>
+<button onClick="inputNumeric(4)">4</button>
+<button onClick="inputNumeric(5)">5</button>
+<button onClick="inputNumeric(6)">6</button>
+<button onclick="operation('/')">/</button>
+<button onclick="operation('*')">*</button>
+<br/>
+<button onClick="inputNumeric(7)">7</button>
+<button onClick="inputNumeric(8)">8</button>
+<button onClick="inputNumeric(9)">9</button>
+<button onClick="calculate()">=</button>
+<br/>
+<button onClick="inputNumeric(0)">0</button>
+<button onClick="clearAll()">C</button>
+<br>
+
+<script>
+    let a = 0;
+    let b = 0;
+    let c = 0;
+    let operator = '';
+    let display = '';
+
+    function inputNumeric(num) {
+        display += num;
+        document.querySelector('#result').value = display;
+
+        if (operator === '') {
+            a = Number(display);
+        } else {
+            b = Number(display);
+        }
+    }
+
+    function operation(v) {
+        operator = v;
+        display = '';
+        document.querySelector('#result').value = '';
+    }
+
+    function calculate() {
+        switch (operator) {
+            case '+':
+                c = a + b;
+                break;
+            case '-':
+                c = a - b;
+                break;
+            case '*':
+                c = a * b;
+                break;
+            case '/':
+                c = a / b;
+                break;
+        }
+
+        document.querySelector('#result').value = c;
+        a = c;
+        b = 0;
+        display = '';
+        operator = '';
+    }
+
+    function clearAll() {
+        a = 0;
+        b = 0;
+        c = 0;
+        display = '';
+        operator = '';
+        document.querySelector('#result').value = '';
+    }
+</script>
+
+</body>
+</html>
