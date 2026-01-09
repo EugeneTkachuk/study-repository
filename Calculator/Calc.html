@@ -29,7 +29,7 @@ result: <input id="result">
 <button onClick="inputNumeric(0)">0</button>
 <button onClick="clearAll()">C</button>
 <br>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script>
     let a = 0;
     let b = 0;
@@ -39,7 +39,7 @@ result: <input id="result">
 
     function inputNumeric(num) {
         display += num;
-        document.querySelector('#result').value = display;
+        $('#result').val(display);
 
         if (operator === '') {
             a = Number(display);
@@ -51,7 +51,7 @@ result: <input id="result">
     function operation(v) {
         operator = v;
         display = '';
-        document.querySelector('#result').value = '';
+        $('#result').val('');
     }
 
     function calculate() {
@@ -70,7 +70,7 @@ result: <input id="result">
                 break;
         }
 
-        document.querySelector('#result').value = c;
+        $('#result').val(c);
         a = c;
         b = 0;
         display = '';
@@ -83,7 +83,7 @@ result: <input id="result">
         c = 0;
         display = '';
         operator = '';
-        document.querySelector('#result').value = '';
+        $('#result').val('');
     }
 </script>
 
