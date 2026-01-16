@@ -5,10 +5,11 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['login'];
     $password = $_POST['password'];
+    $hashedPassword = sha1($password);
     $stmt = $pdo->prepare("SELECT * FROM users WHERE login = :login AND password = :password");
-    $stmt->execute(['login' => $login, 'password' => $password]);
+    $stmt->execute(['login' => $login, 'password' => $hashedPassword]);
     $user_data = $stmt->fetch();
-    if ($user_data && $user_data['password'] == $password) {
+    if ($user_data) {
         $_SESSION['user'] = $user_data['login'];
         header('Location: index.php');
         exit;

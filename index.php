@@ -30,14 +30,14 @@ foreach ($stm as $row) {
 }
 $search = $_GET['search'] ?? '';
 $products = array_filter($products, function ($item) use ($search) {
-    return $search === '' ? true : str_contains($item->name, $search);
+    return $search === '' || str_contains($item->name, $search);
 });
 if (isset($_GET['page'])) {// определяем текущую страницу
     $page = (int)$_GET['page'];
-    setcookie("page", $page, time() + (86400 * 30), "/"); // устанавливаеи куки на 30 дней
-} else if (isset($_COOKIE["page"])) {  // проверяем, если нет страницы то берем из куки
+    setcookie("page", $page, time() + (86400 * 30), "/"); // устанавливаем куки на 30 дней
+} else if (isset($_COOKIE["page"])) {  // проверяем, если нет страницы то берем из кука
     $page = (int)$_COOKIE["page"];
-} else {                   // если нет страницы то 1 по умолчанию
+} else {                   // если нет страницы, то 1 по умолчанию
     $page = 1;
 }
 $per_page = 1;
@@ -56,6 +56,7 @@ $products = array_splice($products, $start, $per_page);
 
 <a href="/create.php"> Новый товар, </a>
 <a href="/checkout.php"> Корзина, </a>
+<div id="tableContent"></div>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
@@ -107,18 +108,28 @@ $products = array_splice($products, $start, $per_page);
     <a href="/index.php?page=<?php echo $i + 1 ?>"><?php echo $i + 1 ?> </a>
 <?php endfor ?>
 
-<form method="post" enctype="multipart/form-data"
-<input type="file" name="document"/>
-<button type="submit">Send!</button>
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="document"/>
+    <button type="submit">Send!</button>
 </form>
 <form method="get">
     <label>
-        <input value="<?php echo $search ?>" type="text" name="search" placeholder="Поиск...">
+        <input value="<?php echo $search ?>" onclick="loadData()" name="search" placeholder="Поиск...">
     </label>
-    <button>Искать</button>
-    <script>
-        function ()
-    </script>
 </form>
+<!--<button onclick="loadData()" type="button" >Поиск</button>-->
+
+<script>
+    function loadData() {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("tableContent").innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("GET", "/index.php?page=1", true);
+        xhttp.send();
+    }
+</script>
 </body>
 </html>
