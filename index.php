@@ -18,7 +18,10 @@
 </form>
 <form method="get">
     <label>
-        <input value="<?php echo($_GET['search'] ?? '') ?>" id="input" oninput="loadData()" name="search"
+        <input value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>"
+               id="input"
+               oninput="loadData()"
+               name="search"
                placeholder="Поиск...">
     </label>
 </form>
@@ -31,7 +34,7 @@
                 document.getElementById("tableContent").innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", "/search.php?search=" + value, true);
+        xhttp.open("GET", "/search.php?search=" + encodeURIComponent(value), true);
         xhttp.send();
     }
 </script>
