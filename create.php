@@ -7,20 +7,26 @@ if (false === isset($_SESSION['user'])) {
     exit();
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])) {
-    $stm = $pdo->prepare
-    (
-            'INSERT INTO product (`name`, `price`, `weight`, `description`, `delivery`, `payment`)
-           VALUES (:name, :price, :weight, :description, :delivery, :payment)'
-    );
-    $stm->bindValue(':name', $_POST['name']);
-    $stm->bindValue(':price', $_POST['price']);
-    $stm->bindValue(':weight', $_POST['weight']);
-    $stm->bindValue(':description', $_POST['area']);
-    $stm->bindValue(':delivery', $_POST['delivery']);
-    $stm->bindValue(':payment', $_POST['payment']);
-    $stm->execute();
+    $photo = '';
+    if (isset($_FILES['picture']) && $_FILES['picture']['error'] === 0) {
+        $filename = $_FILES['picture']['name'];
+        $photo = $filename;
+        move_uploaded_file($_FILES['picture']['tmp_name'], $photo);
+        $stm = $pdo->prepare
+        (
+                'INSERT INTO product (`name`, `price`, `weight`, `description`, `delivery`, `payment`, `photo`)
+           VALUES (:name, :price, :weight, :description, :delivery, :payment, :photo)'
+        );
+        $stm->bindValue(':name', $_POST['name']);
+        $stm->bindValue(':price', $_POST['price']);
+        $stm->bindValue(':weight', $_POST['weight']);
+        $stm->bindValue(':description', $_POST['area']);
+        $stm->bindValue(':delivery', $_POST['delivery']);
+        $stm->bindValue(':payment', $_POST['payment']);
+        $stm->bindValue(':photo', $photo);
+        $stm->execute();
+    }
 }
-
 ?>
 
 <html lang="ru">
@@ -113,10 +119,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['name'])) {
             </label><br>
             <input typ="link">
         </fieldset>
-
+        <br>
+        <label>
+            <input type="file" name="picture" accept="image/*">
+        </label>
+        <br>
         <br>
         <button type="submit">Ok</button>
     </form>
+
 </div>
 </body>
 </html>

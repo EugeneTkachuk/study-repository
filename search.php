@@ -27,6 +27,7 @@ foreach ($stm as $row) {
                     $row['description'],
                     $row['delivery'],
                     $row['payment'],
+                    $row['photo']
             ]
     );
 }
@@ -66,6 +67,7 @@ if (array_key_exists('button1', $_POST)) {
         <td><b>Оплата</b></td>
         <td><b>Добавление</b></td>
         <td><b>Удаление</b></td>
+        <td><b>Фото</b></td>
     </tr>
 
 
@@ -97,6 +99,9 @@ if (array_key_exists('button1', $_POST)) {
             <td>
                 <a href="delete.php?name=<?php echo $value->name; ?>">
                     удалить
+            </td>
+            <td>
+                <img src="/uploads/<?php echo $value->photo ?>" width="100px"/>
             </td>
         </tr>
     <?php } ?>

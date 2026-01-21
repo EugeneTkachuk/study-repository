@@ -13,9 +13,8 @@
 
 
 <form method="post" enctype="multipart/form-data">
-    <input type="file" name="document"/>
-    <button type="submit">Send!</button>
-</form>
+
+
 <form method="get">
     <label>
         <input value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>"

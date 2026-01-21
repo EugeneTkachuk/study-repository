@@ -10,9 +10,10 @@ class Product
     public $delivery;
     public $payment;
     public $food;
+    public $photo;
 
 
-    public function __construct($name, $price, $weight, $area, $delivery, $payment)
+    public function __construct($name, $price, $weight, $area, $delivery, $payment, $photo = '')
     {
         $this->name = $name;
         $this->price = $price;
@@ -20,13 +21,14 @@ class Product
         $this->area = $area;
         $this->delivery = $delivery;
         $this->payment = $payment;
+        $this->photo = $photo;
 
 
     }
 
     public static function createFromArray(array $data): \MyClassWork\Product
     {
-        return new self ($data[0], $data[1], $data[2], $data[3], $data[4], $data[5]);
+        return new self ($data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6]);
     }
 
 
