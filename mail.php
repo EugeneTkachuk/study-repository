@@ -9,7 +9,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/MyClassWork/PHPMailer-master/src/PHPMailer
 require $_SERVER['DOCUMENT_ROOT'] . '/MyClassWork/PHPMailer-master/src/SMTP.php';
 
 
-
 function sendMail($to = 'tkparts.cv@gmail.com', $nameTo = 'Eugene', $subject = 'Here is the subject', $body = 'Here is the body')
 {
     $mail = new PHPMailer(true);

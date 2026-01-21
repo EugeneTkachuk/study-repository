@@ -48,13 +48,13 @@ $pages = ceil($total / $per_page);
 $start = ($page - 1) * $per_page;
 $products = array_splice($products, $start, $per_page);
 
-if(array_key_exists('button1', $_POST)) {
-sendMail();
+if (array_key_exists('button1', $_POST)) {
+    sendMail();
 }
 ?>
 <form method="post">
-<input type="submit" name="button1"
-       class="button" value="Send" />
+    <input type="submit" name="button1"
+           class="button" value="Send"/>
 </form>
 <table width="300px" border="4" cellpadding="5">
     <tr>
