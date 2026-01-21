@@ -1,10 +1,12 @@
 <?php
+
 session_start();
 if (false === isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
 }
 require 'functions.php';
+require 'mail.php';
 $pdo = getDbConnection();
 spl_autoload_register(function ($class) {
     $class = str_replace('\\', '/', $class);
@@ -45,8 +47,15 @@ $total = count($products);
 $pages = ceil($total / $per_page);
 $start = ($page - 1) * $per_page;
 $products = array_splice($products, $start, $per_page);
-?>
 
+if(array_key_exists('button1', $_POST)) {
+sendMail();
+}
+?>
+<form method="post">
+<input type="submit" name="button1"
+       class="button" value="Send" />
+</form>
 <table width="300px" border="4" cellpadding="5">
     <tr>
         <td><b>Продукты</b></td>
